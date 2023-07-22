@@ -1,0 +1,53 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "color-no-invalid-hex": true,
+    "declaration-colon-space-after": "always",
+    "selector-class-pattern": "^[a-z0-9\\-_]+(__[a-z0-9\\-_]+)?(--[a-z0-9\\-_]+)?$",
+    "no-duplicate-selectors": true,
+    "indentation": 2,
+    "no-descending-specificity": true,
+    "media-feature-range-notation": null,
+    "shorthand-property-no-redundant-values": true,
+    "order/properties-order": [
+      "position",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "z-index",
+      "display",
+      "float",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "font",
+      "font-family",
+      "font-size",
+      "font-weight",
+      "line-height",
+      "text-align",
+      "text-transform",
+      "color",
+      "background",
+      "background-color",
+      "border",
+      "border-radius",
+      "box-shadow",
+      "cursor",
+      "overflow",
+      "visibility",
+      "opacity",
+      "::before",
+      "::after",
+      ":hover",
+      ":active",
+      ":focus",
+      ":visited"
+    ]
+  }
+}

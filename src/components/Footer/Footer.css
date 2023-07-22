@@ -1,0 +1,134 @@
+.footer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  padding: 0 70px 20px;
+  /* margin-top: 132px; */
+  margin-top: 47px;
+}
+
+.footer__text {
+  margin: 32px auto 0;
+  padding: 0;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  color: #A0A0A0;
+}
+
+.footer__text::after {
+  content: "";
+  position: absolute;
+  top: 67px;
+  left: 50%;
+  width: calc(100% - 140px);
+  height: 1px;
+  background-color: #E8E8E8;
+  transform: translate(-50%, -50%);
+}
+
+.footer__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 39px;
+}
+
+.footer__copyright {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #000;
+}
+
+.footer__navigation {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.footer__navigation-link {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: right;
+  color: #000;
+  text-decoration: none;
+  outline: none;
+  transition: opacity .3s ease-in-out;
+  cursor: pointer;
+}
+
+.footer__navigation-link:hover {
+  opacity: .6;
+}
+
+.footer__navigation-link:focus-visible {
+  border-bottom: 2px solid #000;
+}
+
+@media screen and (max-width: 1279px) {
+  .footer {
+    padding: 20px 31px;
+    margin-top: 128px;
+  }
+
+  .footer__text {
+    margin-top: 17px;
+  }
+
+  .footer__text::after {
+    top: 73px;
+    width: calc(100% - 65px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    padding: 20px;
+    /* margin-top: 127px; */
+    margin-top: 52px;
+  }
+
+  .footer__text {
+    font-size: 12px;
+  }
+
+  .footer__text::after {
+    width: calc(100% - 25px);
+  }
+
+
+  .footer__container {
+    flex-direction: column-reverse;
+    align-items: center;
+    margin-top: 48px;
+  }
+
+  .footer__copyright {
+    font-size: 12px;
+    margin-top: 30px;
+  }
+
+  .footer__navigation {
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .footer__navigation-link {
+    font-size: 12px;
+  }
+}
