@@ -15,11 +15,7 @@ function SearchForm() {
           className="search-form__input"
           name="input"
           placeholder="Фильм"
-          // minLength="2"
-          // maxLength="30"
           id="input"
-        // value={() => { }}
-        // onChange={() => { }}
         />
         <input
           type="submit"
@@ -27,7 +23,6 @@ function SearchForm() {
           name="movie-search-submit"
           aria-label="Найти фильм"
           value=""
-        // disabled={() => { }}
         />
       </div>
 

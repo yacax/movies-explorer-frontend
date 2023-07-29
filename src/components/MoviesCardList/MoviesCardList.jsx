@@ -57,7 +57,6 @@ function MoviesCardList({
           </button>
         )
         : <p className="movies-card-list__text"> кажется ничего не найдено... </p>}
-
     </div>
   );
 }

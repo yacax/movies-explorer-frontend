@@ -87,19 +87,6 @@
   opacity: .6;
 }
 
-/* .portfolio__navigation-list-item::before {
-  content: "↗";
-  position: absolute;
-  right: 0;
-  font-family: Inter, Arial, sans-serif;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 60px;
-  letter-spacing: -1.2px;
-  color: #000;
-} */
-
 .portfolio__navigation-list-item::after {
   content: "";
   position: absolute;
