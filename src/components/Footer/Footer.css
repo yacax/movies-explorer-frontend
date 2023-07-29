@@ -1,9 +1,8 @@
 .footer {
-  display: flex;
   position: relative;
+  display: flex;
   flex-direction: column;
   padding: 0 70px 20px;
-  /* margin-top: 132px; */
   margin-top: 47px;
 }
 
@@ -98,7 +97,6 @@
 @media screen and (max-width: 767px) {
   .footer {
     padding: 20px;
-    /* margin-top: 127px; */
     margin-top: 52px;
   }
 
@@ -109,7 +107,6 @@
   .footer__text::after {
     width: calc(100% - 25px);
   }
-
 
   .footer__container {
     flex-direction: column-reverse;

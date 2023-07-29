@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Movie Search and Save Service - Frontend Part
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository represents the frontend part of the diploma project, a service where users can search for films and save them in their personal account.
 
-## Available Scripts
+## Project Description
 
-In the project directory, you can run:
+The objective of this project is to build a service that allows users to search for films and save their favourite ones in a personal space. The user enters keywords into the search bar and clicks on the "Search" button. Then, two actions are performed:
 
-### `npm start`
+1. A request is sent to our movie data service to retrieve and save data.
+2. Films corresponding to the selected genre are found and displayed as cards.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+When a user saves a film, it appears in a special section of the website.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Site Structure
 
-### `npm test`
+The website consists of several pages:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Home**: Contains information about the completed project.
+- **Films**: Features a form to search for films and a block with search results.
+- **Saved Films**: Displays films that the user has saved.
+- **Registration**: Allows the user to register an account.
+- **Authorization**: The user can log into the system.
+- **Profile Editing**: The user can modify the details of their account.
 
-### `npm run build`
+# Project Technologies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project has been built with a stack of modern technologies that provides high performance, reliable, and efficient service.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Frontend Technologies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **React:** The client-side of the project will be developed using React, a JavaScript library for building user interfaces.
+- **JavaScript + JS interactive + JS form validation:** JavaScript, along with its interactive features and form validation capabilities, will be used extensively for building dynamic and interactive UI components.
+- **Flash Box & Grid Layout:** The Flash Box and Grid Layout techniques will be used for designing and structuring the application's layout.
+- **Media queries:** Media queries will be used to make the application responsive, thus optimizing it for various device sizes and resolutions.
+- **Fonts import & optimization:** Custom fonts will be imported and optimized for better performance and aesthetic appeal.
+- **Images optimization:** Image files will be optimized to improve loading times and overall performance.
+- **Debugging:** The application will be thoroughly debugged to ensure smooth and error-free operation.
+- **UX optimization:** The user experience (UX) will be optimized to make the application intuitive and user-friendly.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Link to template (https://disk.yandex.ru/d/Q4f6GTeyhs27HA)[https://disk.yandex.ru/d/Q4f6GTeyhs27HA]

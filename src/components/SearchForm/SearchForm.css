@@ -64,6 +64,11 @@
   outline: none;
   overflow: hidden;
   flex-shrink: 0;
+  transition: opacity .3s ease-in-out;
+}
+
+.search-form__submit:hover {
+  opacity: 0.8;
 }
 
 .search-form__submit:active {
@@ -104,12 +109,11 @@
   width: 36px;
   height: 20px;
   background-color: grey;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s ease-in-out, opacity 0.3s ease-in-out;
   border: none;
   border-radius: 12.5px;
   outline: none;
   cursor: pointer;
-
 }
 
 .search-form__checkbox-indicator::before {
@@ -123,7 +127,11 @@
   background-color: white;
   border: none;
   border-radius: 50%;
-  transition: transform 0.2s;
+  transition: transform .3s;
+}
+
+.search-form__checkbox-indicator:hover {
+  opacity: 0.8;
 }
 
 .search-form__checkbox:checked+.search-form__checkbox-indicator {

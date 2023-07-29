@@ -1,11 +1,13 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 import PropTypes from 'prop-types';
 
 function MoviesCard({
   movie,
-  savedMoviesPage,
 }) {
+  const location = useLocation();
+  const savedMoviesPage = location.pathname === '/saved-movies';
   return (
     <div className="movies-card">
       <h1 className="movies-card__title">{movie.name}</h1>
@@ -25,9 +27,7 @@ function MoviesCard({
         alt={movie.name}
         className="movies-card__image"
       />
-
     </div>
-
   );
 }
 
@@ -38,8 +38,6 @@ MoviesCard.propTypes = {
     link: PropTypes.string.isRequired,
     save: PropTypes.bool,
   }),
-  savedMoviesPage: PropTypes.bool,
-
 };
 
 MoviesCard.defaultProps = {
@@ -49,7 +47,6 @@ MoviesCard.defaultProps = {
     link: '../../../images/default_image.jpg',
     save: false,
   },
-  savedMoviesPage: false,
 };
 
 export default MoviesCard;

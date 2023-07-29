@@ -7,12 +7,9 @@ function SectionTemplate(
     title = 'Тут должен быть заголовок',
     id = 'none',
     children,
-    // extraClassName = 'none',
   },
 ) {
   return (
-    // <section className={`section ${(extraClassName !== 'none' && extraClassName)
-    // ? `section__${extraClassName}` : ''}`}>
     <section
       className={`section section_name_${id}`}
       id={id}
@@ -34,7 +31,6 @@ SectionTemplate.propTypes = {
     PropTypes.node,
   ]).isRequired,
   id: PropTypes.string.isRequired,
-  // extraClassName: PropTypes.string.isRequired,
 };
 
 export default SectionTemplate;

@@ -8,7 +8,6 @@ function AboutMe() {
     <SectionTemplate
       title="Студент"
       id="student"
-    // extraClassName
     >
       <div className="about-me">
         <img
@@ -17,41 +16,19 @@ function AboutMe() {
           alt="Так выглядит студент"
         />
         <div className="about-me__summary">
-          <h2 className="about-me__title">Виталий</h2>
-          <h3 className="about-me__subtitle">Фронтенд-разработчик, 30 лет</h3>
+          <h2 className="about-me__title">Александр</h2>
+          <h3 className="about-me__subtitle">Фронтенд-разработчик</h3>
           <p className="about-me__text">
-            Я&nbsp;родился и&nbsp;живу в&nbsp;Саратове,
-            закончил факультет экономики СГУ. У&nbsp;меня есть жена
-            и&nbsp;дочь. Я&nbsp;люблю слушать музыку, а&nbsp;ещё
-            увлекаюсь бегом. Недавно начал кодить. С&nbsp;2015 года
-            работал в&nbsp;компании &laquo;СКБ Контур&raquo;. После того,
-            как прошёл курс по&nbsp;веб-разработке, начал
-            заниматься фриланс-заказами и&nbsp;ушёл с&nbsp;постоянной работы.
+            Я&nbsp;родился и&nbsp;вырос в&nbsp;Санкт-Петербурге, закончил
+            факультет КТиУ ИТМО. У&nbsp;меня есть жена и&nbsp;две дочки.
+            Я&nbsp;люблю слушать музыку, ходить на&nbsp;концерты, играть
+            в&nbsp;волейбол и&nbsp;увлекаюсь бегом. Некоторое время
+            я&nbsp;был инженером, потом работал в&nbsp;продажах. Мне
+            всегда нравился дизайн, а&nbsp;недавно я&nbsp;начал кодить.
+            После того как закончу курс Веб-разработчик от&nbsp;Яндекс
+            Практикум, буду делать крутые штуки в&nbsp;сети.
           </p>
-          {/* <a
-            href="https://github.com"
-            className="about-me__link-git"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github
-          </a> */}
         </div>
-        {/*
-        <nav className="about-me__navigation">
-          <h4 className="about-me__navigation-list-title">Портфолио</h4>
-          <ul className="about-me__navigation-list">
-            <li className="about-me__navigation-list-item">
-              Статичный сайт
-            </li>
-            <li className="about-me__navigation-list-item">
-              Адаптивный сайт
-            </li>
-            <li className="about-me__navigation-list-item">
-              Одностраничное приложение
-            </li>
-          </ul>
-        </nav> */}
       </div>
     </SectionTemplate>
   );

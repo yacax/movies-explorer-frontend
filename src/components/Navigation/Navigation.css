@@ -20,6 +20,7 @@
 }
 
 .navigation__link {
+  z-index: 2;
   display: block;
   height: 18px;
   text-decoration: none;
@@ -42,7 +43,6 @@
 }
 
 .navigation__link:focus-visible {
-  /* outline: 2px solid #000; */
   border-bottom: 2px solid #000;
 }
 
@@ -54,22 +54,23 @@
 }
 
 .navigation__link_active {
-  font-weight: 500;
+  font-weight: 500 !important;
+}
+
+.navigation__link_color_white {
+  color: #fff;
 }
 
 .navigation__button {
-  /* display: block; */
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 76px;
-  height: 26px;
+  height: 32px;
   flex-shrink: 0;
   margin: 0 0 7px 30px;
-  /* margin-bottom: 7px;
-  margin-left: 30px; */
   padding: 0;
-  /* padding-top: 8px; */
   font-family: Inter, Arial, sans-serif;
   font-size: 12px;
   font-style: normal;
@@ -90,6 +91,10 @@
   -o-background-repeat: no-repeat;
 }
 
+.navigation__button:hover {
+  opacity: 0.8;
+}
+
 .navigation__button:active {
   background-color: #20a35d;
   transform: scale(0.95);
@@ -101,42 +106,97 @@
 
 .navigation__button_logged {
   width: 100px;
-  height: 23px;
+  height: 32px;
   flex-shrink: 0;
   font-size: 14px;
   background: #F9F9F9;
   border-radius: 20px;
   padding-top: 0;
-  /* padding-top: 9px; */
 }
 
-.navigation__menu-open-button {
-  display: none;
-  width: 44px;
-  height: 44px;
-  margin: 0;
+.navigation__button_logged:active {
+  background-color: #a09d9d;
+}
+
+.navigation__popup {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 30%);
+}
+
+
+.navigation__popup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 32%;
+  width: 68%;
+  height: 100vh;
+  background: #fff;
+
+}
+
+.navigation__link_popup {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+  text-align: center;
+  margin-left: 32%;
+  margin-top: 25px;
+  padding-bottom: 7px;
+}
+
+.navigation__link_active.navigation__link_popup {
+  border-bottom: 2px #000 solid;
+
+}
+
+.navigation__link_popup:first-child {
+  margin-top: 160px;
+}
+
+.navigation__button_popup {
+  margin-top: 619px;
+  margin-left: 32%;
+}
+
+.navigation__close-popup-button {
+  position: absolute;
+  top: 27px;
+  right: 28px;
+  width: 22px;
+  height: 22px;
+  margin: 0 ;
   padding: 0;
-  background: #fff url('../../images/menu-button-1280.svg') no-repeat center;
+  background: url('../../images/close-popup-button.svg') no-repeat center;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
   outline: none;
   overflow: hidden;
-  flex-shrink: 0;
+  transition: opacity .3s ease-in-out;
 }
 
-.navigation__menu-open-button:active {
-  transform: scale(0.9);
+.navigation__close-popup-button:hover {
+  opacity: 0.8;
 }
 
-.navigation__menu-open-button:focus-visible {
+.navigation__close-popup-button:active {
+  transform: scale(0.95);
+}
+
+.navigation__close-popup-button:focus-visible {
   outline: 2px solid #000;
 }
 
 @media screen and (max-width: 1279px) {
-  .navigation__menu-open-button {
-    display: block;
-  }
-
   .navigation__menu {
     display: none;
   }
@@ -148,6 +208,10 @@
   .navigation__button {
     margin-bottom: 0;
   }
+
+  .navigation__popup::before {
+    min-height: 1024px;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -158,9 +222,13 @@
   .navigation__button {
     width: 54px;
     height: 26px;
-    margin-bottom: 7px;
     margin: 6px 7px 0 0;
     font-size: 10px;
+  }
+
+  .navigation__button_popup {
+    margin-top: 619px;
+    margin-left: 32%;
   }
 }
 
@@ -175,9 +243,38 @@
     margin-bottom: 6px;
   }
 
-  .navigation__menu-open-button {
-    margin: -1px 5px 0 0;
-    background: #fff url('../../images/menu-button-320.svg') no-repeat center;
+  .navigation__popup {
+    left: 0;
+    width: 100%;
+  }
 
+  .navigation__popup::before {
+    left: 0;
+    width: 100%;
+  }
+
+  .navigation__close-popup-button {
+    top: 18px;
+    right: 18px;
+  }
+
+  .navigation__link_popup {
+    font-size: 18px;
+    margin-top: 17px;
+    padding-bottom: 10px;
+  }
+
+  .navigation__link_popup:first-child {
+    margin-top: 146px;
+  }
+
+  .navigation__button_popup {
+    width: 100px;
+    height: 32px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    margin-top: max(170px, calc(100vh - 344px));
   }
 }

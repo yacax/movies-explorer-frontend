@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './MoviesCardList.css';
 import PropTypes from 'prop-types';
 import MoviesCard from '../MoviesCard/MoviesCard';
-// import moviesArray from '../../utils/cardsArray';
 
 function MoviesCardList({
   moviesArray,
@@ -47,13 +46,17 @@ function MoviesCardList({
       <div className="movies-card-list__container">
         {movies}
       </div>
-      <button
-        className="movies-card-list__button"
-        type="button"
-        onClick={handleLoadMore}
-      >
-        Ещё
-      </button>
+      {movies.length > 0
+        ? (
+          <button
+            className="movies-card-list__button"
+            type="button"
+            onClick={handleLoadMore}
+          >
+            Ещё
+          </button>
+        )
+        : <p className="movies-card-list__text"> кажется ничего не найдено... </p>}
 
     </div>
   );

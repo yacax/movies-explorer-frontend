@@ -24,7 +24,7 @@ function SearchForm() {
         <input
           type="submit"
           className="search-form__submit"
-          name="auth-page__submit"
+          name="movie-search-submit"
           aria-label="Найти фильм"
           value=""
         // disabled={() => { }}

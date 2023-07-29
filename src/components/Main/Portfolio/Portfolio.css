@@ -1,15 +1,14 @@
 .portfolio {
-  display: flex;
   position: relative;
+  display: flex;
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
   min-height: 350px;
-  background: #FFF;
   padding: 0 70px;
   margin-top: -112px;
-  /* margin-bottom: 4px; */
   margin-bottom: 125px;
+  background: #FFF;
 }
 
 .portfolio__link-git {
@@ -17,12 +16,12 @@
   top: -116px;
   margin: 0;
   padding: 0;
-  color: #000;
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: Inter, Arial, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  color: #000;
   text-decoration: none;
   margin-top: 98px;
 }
@@ -35,59 +34,51 @@
   width: 100%;
 }
 
-
-
 .portfolio__navigation-list-title {
   grid-column: 1/2;
   grid-row: 2;
   margin: 0;
   padding: 0;
-  text-decoration: none;
-  color: #A0A0A0;
-  font-family: Inter;
+  font-family: Inter, Arial, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  /* margin-bottom: 49px; */
+  text-decoration: none;
+  color: #A0A0A0;
 }
 
 .portfolio__navigation-list {
-  /* position: relative; */
   width: 100%;
   grid-column: 1/2;
   grid-row: 2;
   margin: 0;
   padding: 0;
-  /* max-width: 880px; */
-  text-decoration: none;
-  list-style: none;
-  color: #000;
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: Inter, Arial, sans-serif;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
   line-height: 50px;
   letter-spacing: -1.2px;
+  text-decoration: none;
+  list-style: none;
+  color: #000;
   margin-top: 49px;
 }
 
 .portfolio__navigation-list-item {
   position: relative;
-  /* grid-column: 1/2;
-  grid-row: 2; */
   margin: 0;
   padding: 0;
-  /* max-width: 880px; */
-  text-decoration: none;
-  color: #000;
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: Inter, Arial, sans-serif;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
   line-height: 50px;
   letter-spacing: -1.2px;
   margin-bottom: 40px;
+  text-decoration: none;
+  color: #000;
   transition: opacity .3s ease-in-out;
   cursor: pointer;
 }
@@ -96,18 +87,18 @@
   opacity: .6;
 }
 
-.portfolio__navigation-list-item::before {
+/* .portfolio__navigation-list-item::before {
   content: "↗";
   position: absolute;
-  color: #000;
-  font-family: 'Inter', Arial, sans-serif;
+  right: 0;
+  font-family: Inter, Arial, sans-serif;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
   line-height: 60px;
   letter-spacing: -1.2px;
-  right: 0px;
-}
+  color: #000;
+} */
 
 .portfolio__navigation-list-item::after {
   content: "";
@@ -128,13 +119,42 @@
   content: none;
 }
 
+.portfolio__navigation-list-link {
+  position: static;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -1.2px;
+  margin-bottom: 40px;
+  text-decoration: none;
+  color: #000;
+  transition: opacity .3s ease-in-out;
+  cursor: pointer;
+}
+
+.portfolio__navigation-list-link::before {
+  content: "↗";
+  position: absolute;
+  right: 0;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 60px;
+  letter-spacing: -1.2px;
+  color: #000;
+}
+
 @media screen and (max-width: 1279px) {
   .portfolio {
     padding: 0 50px;
     margin-top: -92px;
     margin-bottom: 4px;
   }
-
 
   .portfolio__link-git {
     margin-top: 98px;
@@ -150,7 +170,11 @@
   }
 
   .portfolio__navigation-list-item {
+    font-size: 28px;
+    letter-spacing: -1.12px;
+  }
 
+  .portfolio__navigation-list-link {
     font-size: 28px;
     letter-spacing: -1.12px;
   }
@@ -159,23 +183,19 @@
     font-size: 30px;
     letter-spacing: -1.12px;
   }
-
 }
 
 @media screen and (max-width: 767px) {
-
   .portfolio {
     padding: 0 13px;
-    margin-top: -15px;
+    margin-top: -47px;
   }
-
 
   .portfolio__navigation {
     position: relative;
     grid-column: 1;
     grid-row: 3;
     margin-top: 70px;
-
   }
 
   .portfolio__link-git {
@@ -192,8 +212,13 @@
     letter-spacing: -0.72px;
   }
 
-  .portfolio__navigation-list-item::before {
+  .portfolio__navigation-list-link {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.72px;
+  }
 
+  .portfolio__navigation-list-item::before {
     font-size: 18px;
     line-height: 28px;
     letter-spacing: -0.72px;
@@ -206,6 +231,4 @@
   .portfolio__navigation-list-item::after {
     top: 47px;
   }
-
-
 }
