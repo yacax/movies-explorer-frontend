@@ -51,6 +51,16 @@ const useForm = (initialState) => {
     setIsFormValid(!hasErrors(errors));
   }, [errors]);
 
+  const setCustomError = (inputName, customErrorText) => {
+    setErrors((prevErrors) => {
+      const newErrors = {
+        ...prevErrors,
+        [inputName]: customErrorText,
+      };
+      return newErrors;
+    });
+  };
+
   const handleChange = (evt) => {
     const input = evt.target;
 
@@ -91,6 +101,7 @@ const useForm = (initialState) => {
     errors,
     isFormValid,
     handleChange,
+    setCustomError,
     resetForm,
     hardChangeIsFormValid,
     handleFocus,

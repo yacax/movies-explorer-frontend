@@ -221,6 +221,10 @@
   .page-with-form__navigation {
     margin: 16px auto 233px;
   }
+
+  .page-with-form__bottom-container {
+    margin-top: 80px;
+  }
 }
 
 @media screen and (max-width: 767px) {

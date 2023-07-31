@@ -44,12 +44,11 @@ function AboutProject() {
             </tr>
           </tbody>
         </table>
+        <ul className="about-project__gant-container">
+          <li className="about-project__gant about-project__gant_color_green">1 неделя</li>
+          <li className="about-project__gant about-project__gant_color_grey">4 недели</li>
+        </ul>
       </div>
-
-      <ul className="about-project__gant-container">
-        <li className="about-project__gant about-project__gant_color_green">1 неделя</li>
-        <li className="about-project__gant about-project__gant_color_grey">4 недели</li>
-      </ul>
     </SectionTemplate>
   );
 }
