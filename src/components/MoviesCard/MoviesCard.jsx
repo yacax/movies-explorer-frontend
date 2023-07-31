@@ -20,7 +20,6 @@ function MoviesCard({
         name="movies-card__save-button"
         aria-label="Сохранить фильм"
         value=""
-      // disabled={() => { }}
       />
       <img
         src={movie.link}
@@ -42,7 +41,6 @@ MoviesCard.propTypes = {
 
 MoviesCard.defaultProps = {
   movie: {
-    // name: 'Unknown',
     duration: 'Unknown',
     link: '../../../images/default_image.jpg',
     save: false,

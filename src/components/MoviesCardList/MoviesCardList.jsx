@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './MoviesCardList.css';
 import PropTypes from 'prop-types';
 import MoviesCard from '../MoviesCard/MoviesCard';
@@ -7,6 +8,8 @@ function MoviesCardList({
   moviesArray,
   savedMoviesPage,
 }) {
+  const location = useLocation();
+  const isMovies = location.pathname === '/movies';
   const [visibleMovies, setVisibleMovies] = useState(4);
 
   useEffect(() => {
@@ -46,7 +49,8 @@ function MoviesCardList({
       <div className="movies-card-list__container">
         {movies}
       </div>
-      {movies.length > 0
+
+      {isMovies && (movies.length > 0
         ? (
           <button
             className="movies-card-list__button"
@@ -56,7 +60,7 @@ function MoviesCardList({
             Ещё
           </button>
         )
-        : <p className="movies-card-list__text"> кажется ничего не найдено... </p>}
+        : <p className="movies-card-list__text"> кажется ничего не найдено... </p>)}
     </div>
   );
 }

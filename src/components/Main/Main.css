@@ -1,5 +1,5 @@
-.login {
+.main {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  margin: 0 auto;
 }

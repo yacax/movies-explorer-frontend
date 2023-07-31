@@ -1,5 +1,4 @@
 import React from 'react';
-import './Login.css';
 import useForm from '../../hooks/useForm';
 import PageWithForm from '../PageWithForm/PageWithForm';
 
@@ -36,6 +35,7 @@ function SignIn() {
           autoComplete="email"
           className="page-with-form__input"
           name="email"
+          placeholder="E-mail"
           required
           maxLength="30"
           id="email"
@@ -57,6 +57,7 @@ function SignIn() {
           autoComplete="current-password"
           className="page-with-form__input"
           name="password"
+          placeholder="Пароль"
           required
           maxLength="40"
           id="password"

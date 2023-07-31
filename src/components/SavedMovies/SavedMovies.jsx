@@ -3,6 +3,7 @@ import './SavedMovies.css';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Main from '../Main/Main';
 
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -12,12 +13,14 @@ function SavedMovies() {
   return (
     <>
       <Header />
-      <SearchForm />
-      <section className="saved-movies">
-        <MoviesCardList
-          moviesArray={SavedMoviesArray}
-        />
-      </section>
+      <Main>
+        <SearchForm />
+        <section className="saved-movies">
+          <MoviesCardList
+            moviesArray={SavedMoviesArray}
+          />
+        </section>
+      </Main>
       <Footer />
     </>
   );

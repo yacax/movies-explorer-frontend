@@ -22,7 +22,7 @@ const moviesArray = [
     _id: 3,
     name: '33 слова о дизайне',
     duration: '1ч 47м',
-    link: '../../../images/pic__COLOR_pic (2).jpg',
+    link: '../../../images/pic__COLOR_pic.jpeg',
   },
   {
     _id: 4,

@@ -8,6 +8,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import moviesArrayFromServer from '../../utils/moviesArray';
 import savedMoviesArray from '../../utils/savedMoviesArray';
+import Main from '../Main/Main';
 
 function Movies() {
   const moviesArray = moviesArrayFromServer.map((movie) => ({
@@ -18,13 +19,15 @@ function Movies() {
   return (
     <>
       <Header />
-      <SearchForm />
-      <section className="movies">
-        <MoviesCardList
-          moviesArray={moviesArray}
-          savedMoviesPage={false}
-        />
-      </section>
+      <Main>
+        <SearchForm />
+        <section className="movies">
+          <MoviesCardList
+            moviesArray={moviesArray}
+            savedMoviesPage={false}
+          />
+        </section>
+      </Main>
       <Footer />
     </>
   );

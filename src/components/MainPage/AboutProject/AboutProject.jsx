@@ -12,7 +12,7 @@ function AboutProject() {
         <table className="about-project__table">
           <thead>
             <tr>
-              <th className="about-project__table_header">Дипломный проект включал 5 этапов</th>
+              <th className="about-project__table-header">Дипломный проект включал 5 этапов</th>
             </tr>
           </thead>
           <tbody className="about-project__table-body">
@@ -30,7 +30,7 @@ function AboutProject() {
         <table className="about-project__table">
           <thead>
             <tr>
-              <th className="about-project__table_header">На выполнение диплома ушло 5 недель</th>
+              <th className="about-project__table-header">На выполнение диплома ушло 5 недель</th>
             </tr>
           </thead>
           <tbody className="about-project__table-body">

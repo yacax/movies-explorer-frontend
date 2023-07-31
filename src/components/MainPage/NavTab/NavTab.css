@@ -34,6 +34,11 @@
   transition: opacity .3s ease-in-out;
 }
 
+.navtab__link:hover {
+  opacity: .6;
+}
+
+
 @media screen and (max-width: 767px) {
   .navtab__list {
     gap: 25px;

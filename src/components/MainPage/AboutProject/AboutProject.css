@@ -25,7 +25,7 @@
   color: #000;
 }
 
-.about-project__table_header {
+.about-project__table-header {
   font-family: Inter, Arial, sans-serif;
   font-size: 20px;
   font-style: normal;
@@ -137,7 +137,7 @@
     max-width: 100%;
   }
 
-  .about-project__table_header {
+  .about-project__table-header {
     font-size: 18px;
     letter-spacing: -0.72px;
   }

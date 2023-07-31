@@ -1,5 +1,4 @@
 import React from 'react';
-import './Register.css';
 import useForm from '../../hooks/useForm';
 import PageWithForm from '../PageWithForm/PageWithForm';
 
@@ -36,6 +35,7 @@ function Register() {
           autoComplete="name"
           className="page-with-form__input"
           name="username"
+          placeholder="Имя"
           required
           minLength="2"
           maxLength="30"
@@ -57,6 +57,7 @@ function Register() {
           autoComplete="email"
           className="page-with-form__input"
           name="email"
+          placeholder="E-mail"
           required
           maxLength="30"
           id="email"
@@ -78,6 +79,7 @@ function Register() {
           autoComplete="current-password"
           className="page-with-form__input"
           name="password"
+          placeholder="Пароль"
           required
           minLength="8"
           maxLength="40"
@@ -99,6 +101,7 @@ function Register() {
           autoComplete="new-password"
           className="page-with-form__input"
           name="confirmPassword"
+          placeholder="Подтвердите пароль"
           required
           minLength="8"
           maxLength="40"

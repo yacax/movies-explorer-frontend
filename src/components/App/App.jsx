@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Main from '../Main/Main';
+import MainPage from '../MainPage/MainPage';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
@@ -23,7 +23,7 @@ function App() {
             <Route
               path="/"
               element={(
-                <Main />
+                <MainPage />
               )}
             />
             <Route

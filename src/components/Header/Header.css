@@ -32,11 +32,16 @@
   background-size: contain;
   margin: 0 0 6px;
   border: none;
+  cursor: pointer;
   transition: opacity .3s ease-in-out;
 }
 
 .header__logo:hover {
-  opacity: .8;
+  opacity: .7;
+}
+
+.header__logo:active {
+  transform: scale(0.95);
 }
 
 .header__logo:focus-visible {

@@ -38,7 +38,7 @@ function Profile() {
   return (
     <>
       <Header />
-      <section className="profile">
+      <main className="profile">
         <h2 className="profile__title">
           Привет,
           {' '}
@@ -58,7 +58,7 @@ function Profile() {
               type="text"
               className={`profile__input ${isEdit ? 'profile__input_type_edit' : ''}`}
               name="username"
-              placeholder=""
+              placeholder="Имя"
               required
               minLength="1"
               maxLength="30"
@@ -81,7 +81,7 @@ function Profile() {
               type="email"
               className={`profile__input ${isEdit ? 'profile__input_type_edit' : ''}`}
               name="email"
-              placeholder=""
+              placeholder="E-mail"
               required
               minLength="2"
               maxLength="30"
@@ -128,7 +128,7 @@ function Profile() {
           // disabled={() => { }}
           />
         )}
-      </section>
+      </main>
     </>
   );
 }

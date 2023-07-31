@@ -24,11 +24,11 @@ function PageWithForm({
     navigate('/movies');
   };
   return (
-    <div className={`page-with-form page-with-form_name_${pageName}`}>
+    <main className={`page-with-form page-with-form_name_${pageName}`}>
       <div
         className="page-with-form__top-container"
       >
-        <div className="page-with-form__logo" />
+        <NavLink to="/" className="page-with-form__logo" />
         <h2 className="page-with-form__title">{pageTitle}</h2>
         <form
           className="page-with-form__form"
@@ -62,7 +62,7 @@ function PageWithForm({
           </NavLink>
         </nav>
       </div>
-    </div>
+    </main>
   );
 }
 

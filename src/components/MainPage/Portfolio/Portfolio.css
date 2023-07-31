@@ -23,8 +23,15 @@
   line-height: normal;
   color: #000;
   text-decoration: none;
+  transition: opacity .3s ease-in-out;
   margin-top: 98px;
 }
+
+
+.portfolio__link-git:hover {
+  opacity: .6;
+}
+
 
 .portfolio__navigation {
   position: relative;
@@ -203,6 +210,13 @@
     font-size: 18px;
     line-height: 28px;
     letter-spacing: -0.72px;
+    margin-left: 1px;
+  }
+
+  .portfolio__navigation-list-link::before {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 1.28px;
   }
 
   .portfolio__navigation-list-item::before {
