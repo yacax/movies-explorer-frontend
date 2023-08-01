@@ -1,0 +1,113 @@
+.movies-card {
+  position: relative;
+  display: grid;
+  grid-template: "movies__title movies__save" auto
+    "movies__text movies__save" auto
+    "movies__image movies__image" auto;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  background: #FDFDFD;
+  box-shadow: 0 4px 30px 0 rgb(0 0 0 / 8%);
+}
+
+.movies-card__title {
+  width: 280px;
+  margin: 14px auto 0 14px;
+  padding: 0;
+  grid-area: movies__title;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #000;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: 14px;
+}
+
+.movies-card__text {
+  width: 280px;
+  margin: 10px 0 12px 14px;
+  padding: 0;
+  grid-area: movies__text;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #A0A0A0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.movies-card__save-button {
+  grid-area: movies__save;
+  width: 30px;
+  height: 30px;
+  margin: auto;
+  margin-right: 14px;
+  padding: 0;
+  background: #F9F9F9 url('../../images/save-button.svg') no-repeat center;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: opacity .3s ease-in-out;
+}
+
+.movies-card__save-button:hover {
+  opacity: 0.8;
+}
+
+.movies-card__save-button:active {
+  background-color: #A0A0A0;
+  transform: scale(0.95);
+}
+
+.movies-card__save-button:focus-visible {
+  outline: 2px solid #000;
+}
+
+.movies-card__save-button_type_active {
+  background: #2BE080 url('../../images/save-button-active.svg') no-repeat center;
+}
+
+.movies-card__save-button_type_delete {
+  background: #F9F9F9 url('../../images/save-button-delete.svg') no-repeat center;
+}
+
+.movies-card__image {
+  grid-area: movies__image;
+  width: 100%;
+  aspect-ratio: 364 / 203;
+  flex-shrink: 0;
+  object-fit: cover;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #A0A0A0;
+}
+
+.element__image::before {
+  content: "Изображение не загружено :(";
+}
+
+@media screen and (max-width: 767px) {
+  .movies-card__title {
+    max-width: 210px;
+  }
+
+  .movies-card__text {
+    max-width: 210px;
+  }
+}
