@@ -1,19 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import useForm from '../../hooks/useForm';
 import PageWithForm from '../PageWithForm/PageWithForm';
 
-function Register() {
+function Register({ registerUser }) {
   const {
     form,
     errors,
     isFormValid,
     handleChange,
   } = useForm({
-    username: '',
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    registerUser(form);
+  };
+
   return (
     <PageWithForm
       pageTitle="Добро пожаловать!"
@@ -23,28 +30,28 @@ function Register() {
       pageNavigationLinkText="Войти"
       pageNavigationLinkComment="Уже зарегистрированы?"
       isFormValid={isFormValid}
-      onSubmit={() => { }}
+      onSubmit={handleSubmit}
     >
       <label
         className="page-with-form__input-label"
-        htmlFor="username"
+        htmlFor="name"
       >
         Имя
         <input
           type="text"
           autoComplete="name"
           className="page-with-form__input"
-          name="username"
+          name="name"
           placeholder="Имя"
           required
           minLength="2"
           maxLength="30"
-          id="username"
-          value={form.username}
+          id="name"
+          value={form.name}
           onChange={handleChange}
         />
         <span className="page-with-form__error-text">
-          {errors.username}
+          {errors.name}
         </span>
       </label>
       <label
@@ -116,5 +123,9 @@ function Register() {
     </PageWithForm>
   );
 }
+
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+};
 
 export default Register;

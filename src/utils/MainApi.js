@@ -2,9 +2,9 @@ import {
   baseBackendUrl,
 } from './constants';
 
-class Api {
+class MainApi {
   constructor(options) {
-    this.baseUrl = options.baseUrl;
+    this.baseUrl = options.baseBackendUrl;
     this.headers = options.headers;
     this.token = '';
   }
@@ -65,11 +65,11 @@ class Api {
     });
   }
 
-  patchUserData(name, about) {
+  patchUserData(name, email) {
     return this._request(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this.headers,
-      body: JSON.stringify({ name, about }),
+      body: JSON.stringify({ name, email }),
     });
   }
 
@@ -80,13 +80,13 @@ class Api {
     year,
     description,
     image,
-    trailer,
+    trailerLink,
     nameRU,
     nameEN,
     thumbnail,
     movieId,
   }) {
-    return this._request(`${this.baseUrl}/cards`, {
+    return this._request(`${this.baseUrl}/movies`, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({
@@ -96,7 +96,7 @@ class Api {
         year,
         description,
         image,
-        trailer,
+        trailerLink,
         nameRU,
         nameEN,
         thumbnail,
@@ -113,11 +113,11 @@ class Api {
   }
 }
 
-const api = new Api({
+const mainApi = new MainApi({
   baseBackendUrl,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-export default api;
+export default mainApi;

@@ -155,6 +155,11 @@
   transition: opacity .3s ease-in-out;
 }
 
+.profile__button_disabled {
+  color: #C2C2C2;
+  background: #F8F8F8;
+}
+
 @media screen and (max-width: 1279px) {
   .profile {
     padding-bottom: 190px;

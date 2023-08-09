@@ -1,9 +1,9 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './PageWithForm.css';
 
-import IsLoggedIn from '../../contexts/IsLoggedInContext';
+// import IsLoggedIn from '../../contexts/IsLoggedInContext';
 
 function PageWithForm({
   pageName,
@@ -15,14 +15,15 @@ function PageWithForm({
   pageNavigationLink,
   pageNavigationLinkText,
   pageNavigationLinkComment,
+  // isLoggedIn,
 }) {
-  const navigate = useNavigate();
-  const { setIsLoggedIn } = React.useContext(IsLoggedIn);
-  const onClick = (evt) => {
-    evt.preventDefault();
-    setIsLoggedIn(true);
-    navigate('/movies');
-  };
+  // const navigate = useNavigate();
+  // // const { setIsLoggedIn } = React.useContext(IsLoggedIn);
+  // const onClick = (evt) => {
+  //   evt.preventDefault();
+  //   setIsLoggedIn(true);
+  //   navigate('/movies');
+  // };
   return (
     <main className={`page-with-form page-with-form_name_${pageName}`}>
       <div
@@ -48,7 +49,7 @@ function PageWithForm({
           name="page-with-form__submit"
           value={submitButtonText}
           disabled={!isFormValid}
-          onClick={onClick}
+        // onClick={onClick}
         />
         <nav
           className="page-with-form__navigation"
@@ -79,6 +80,11 @@ PageWithForm.propTypes = {
   pageNavigationLink: PropTypes.string.isRequired,
   pageNavigationLinkText: PropTypes.string.isRequired,
   pageNavigationLinkComment: PropTypes.string.isRequired,
+  // isLoggedIn: PropTypes.bool,
 };
+
+// PageWithForm.defaultProps = {
+//   isLoggedIn: false,
+// };
 
 export default PageWithForm;
