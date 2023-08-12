@@ -1,47 +1,61 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-
 import './SavedMovies.css';
-
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
-
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-// import SavedMoviesArray from '../../utils/savedMoviesArray';
-import Preloader from '../Preloader/Preloader';
+import useSearch from '../../hooks/useSearch';
 
 function SavedMovies({
-  searchHandle,
-  showingMoviesArray,
-  searchResultMessage,
-  isShorts,
-  isShortsHandler,
-  isLoading,
+  savedMovies,
   handleMovieButton,
-  setResetSavedMoviesSearch,
 }) {
-  // console.log(`searchResultMessage внутри ${searchResultMessage}`);
+  const {
+    findedMovies,
+    isNotFoundMessage,
+    performSearch,
+    isShortsOnly,
+    setIsShortsOnly,
+    setIsNotFoundMessage,
+  } = useSearch();
+
+  const searchHandle = (searchRequest) => {
+    performSearch(searchRequest, savedMovies);
+  };
+
+  const isShortsHandler = () => {
+    setIsShortsOnly(!isShortsOnly);
+  };
+
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    performSearch('*', savedMovies);
+  }, [isShortsOnly, savedMovies]);
+
+  useEffect(() => { setIsNotFoundMessage(''); }, []);
   return (
     <>
       <Header />
       <Main>
         <SearchForm
           searchHandle={searchHandle}
-          isShorts={isShorts}
+          isShorts={isShortsOnly}
           isShortsHandler={isShortsHandler}
-          setResetSavedMoviesSearch={setResetSavedMoviesSearch}
         />
         <section className="saved-movies">
-          {isLoading ? <Preloader />
-            : (
-              <MoviesCardList
-                moviesArray={showingMoviesArray}
-                searchResultMessage={searchResultMessage}
-                handleMovieButton={handleMovieButton}
-              />
-            )}
+          <MoviesCardList
+            moviesArray={(findedMovies.length > 0
+              || isNotFoundMessage) ? findedMovies : savedMovies}
+            searchResultMessage={isNotFoundMessage}
+            handleMovieButton={handleMovieButton}
+          />
         </section>
       </Main>
       <Footer />
@@ -50,32 +64,19 @@ function SavedMovies({
 }
 
 SavedMovies.propTypes = {
-  searchHandle: PropTypes.func.isRequired,
-  showingMoviesArray: PropTypes.arrayOf(
+  savedMovies: PropTypes.arrayOf(
     PropTypes.shape({
-      // id: PropTypes.number.isRequired,
       movieId: PropTypes.number.isRequired,
       nameRU: PropTypes.string.isRequired,
       duration: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
-      // searchRate: PropTypes.number.isRequired,
     }),
   ).isRequired,
-  searchResultMessage: PropTypes.string,
-  isShorts: PropTypes.bool,
-  isShortsHandler: PropTypes.func,
-  isLoading: PropTypes.bool,
   handleMovieButton: PropTypes.func,
-  setResetSavedMoviesSearch: PropTypes.func,
 };
 
 SavedMovies.defaultProps = {
-  searchResultMessage: 'кажется что-то пошло не так...',
-  isShorts: false,
-  isShortsHandler: () => { },
-  isLoading: false,
   handleMovieButton: () => { },
-  setResetSavedMoviesSearch: () => { },
 };
 
 export default SavedMovies;

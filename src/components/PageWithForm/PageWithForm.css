@@ -171,6 +171,11 @@
   outline: 2px solid #000;
 }
 
+.page-with-form__button_disabled {
+  color: #C2C2C2;
+  background: #F8F8F8;
+}
+
 .page-with-form__navigation {
   display: flex;
   margin: 16px auto 70px;

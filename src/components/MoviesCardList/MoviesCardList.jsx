@@ -6,8 +6,6 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList({
   moviesArray,
-  // savedMoviesPage,
-  // isShorts,
   searchResultMessage,
   handleMovieButton,
 }) {
@@ -53,34 +51,27 @@ function MoviesCardList({
     }
   }, [displayState]);
 
-  // useEffect(() => {
-  //   if (!isMovies) setVisibleMovies(moviesArray.length) else {
-  //     switch (displayState) {
-  //       case 'middle': setVisibleMovies(8);
-  //         break;
-  //       case 'large': setVisibleMovies(12);
-  //         break;
-  //       default: setVisibleMovies(5);
-  //     }
-  //   }
-  // }, [displayState]);
-
   const handleLoadMore = () => {
     const extraMovies = displayState === 'large' ? 3 : 2;
     setVisibleMovies((prevVisibleMovies) => prevVisibleMovies + extraMovies);
   };
+  const moviesToShow = moviesArray.slice(0, visibleMovies);
 
-  const movies = moviesArray.length > 0 ? moviesArray
-    .slice(0, visibleMovies)
-    .map((m) => (
+  const movies = moviesToShow.length
+    ? moviesToShow.map((m) => (
       <MoviesCard
         key={m.movieId}
         movie={m}
         handleMovieButton={handleMovieButton}
-      // isMovies={isMovies}
       />
     ))
-    : moviesArray;
+    : (
+      <div className="movies-card-list__text-container">
+        <p className="movies-card-list__text">
+          {searchResultMessage}
+        </p>
+      </div>
+    );
 
   return (
     <div className="movies-card-list">
@@ -97,76 +88,33 @@ function MoviesCardList({
           Ещё
         </button>
       )}
-
-      <p className="movies-card-list__text">
-        {' '}
-        {searchResultMessage}
-        {' '}
-      </p>
     </div>
   );
 }
 
-//   return (
-//     <div className="movies-card-list">
-//       <div className="movies-card-list__container">
-//         {movies}
-//       </div>
-
-//       {isMovies && (movies.length !== moviesArray.length && movies.length > 0
-//         ? (
-//           <button
-//             className="movies-card-list__button"
-//             type="button"
-//             onClick={handleLoadMore}
-//           >
-//             Ещё
-//           </button>
-//         )
-//         : (
-//           <p className="movies-card-list__text">
-//             {' '}
-//             {searchResultMessage}
-//             {' '}
-//           </p>
-//         ))}
-//       <p className="movies-card-list__text">
-//         {' '}
-//         {searchResultMessage}
-//         {' '}
-//       </p>
-//     </div>
-//   );
-// }
-
 MoviesCardList.propTypes = {
   moviesArray: PropTypes.arrayOf(
     PropTypes.shape({
-      // id: PropTypes.number.isRequired,
       movieId: PropTypes.number.isRequired,
       nameRU: PropTypes.string.isRequired,
       duration: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
-      // searchRate: PropTypes.number,
+
       save: PropTypes.bool,
     }),
   ),
-  // savedMoviesPage: PropTypes.bool,
-  // isShorts: PropTypes.bool.isRequired,
   searchResultMessage: PropTypes.string.isRequired,
   handleMovieButton: PropTypes.func.isRequired,
 };
 
 MoviesCardList.defaultProps = {
-  moviesArray: PropTypes.shape([{
+  moviesArray: [{
+    movieId: 0,
     nameRU: 'no name',
-    duration: 'no name',
-    link: 'no name',
+    duration: 0,
     image: '',
-    // searchRate: 0,
     save: false,
-  }]),
-  // savedMoviesPage: false,
+  }],
 };
 
 export default MoviesCardList;

@@ -8,9 +8,16 @@ const textsErrorMessages = {
   movieNotFoundError: 'Ничего не найдено',
 };
 
+const authErrorMessages = {
+  successRegistration: 'Вы успешно зарегистрировались!',
+  serverRespError: 'Ошибка в ответе с сервера',
+  smthWentWrong: 'Что-то пошло не так! Попробуйте ещё раз.',
+};
+
 export {
   baseBackendUrl,
   baseMoviesUrl,
   baseImageUrl,
   textsErrorMessages,
+  authErrorMessages,
 };

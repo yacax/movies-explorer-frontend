@@ -147,7 +147,7 @@
   text-align: center;
   text-decoration: none;
   color: #FFF;
-  background: #3456F3;
+  background: #FF6838;
   flex-shrink: 0;
   border: none;
   border-radius: 3px;
@@ -192,5 +192,9 @@
 
   .profile__link {
     font-size: 12px;
+  }
+
+  .profile__button {
+    width: 100%;;
   }
 }

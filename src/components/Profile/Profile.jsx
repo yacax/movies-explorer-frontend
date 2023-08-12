@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import './Profile.css';
+import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import useForm from '../../hooks/useForm';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function Profile({
-  logOut,
   changeProfile,
+  logOut,
 }) {
-  const user = React.useContext(CurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
   const [isEdit, setIsEdit] = useState(false);
   const refName = useRef();
   const {
@@ -17,30 +17,63 @@ function Profile({
     errors,
     handleChange,
     isFormValid,
+    updateFormInput,
+    hardChangeIsFormValid,
   } = useForm({
-    name: user.name,
-    email: user.email,
+    name: currentUser.name,
+    email: currentUser.email,
   });
 
-  useEffect(() => { console.log(isFormValid); }, [isFormValid]);
+  const [userName, setUserName] = useState(currentUser.name);
+  // const [userEdit, setUserEdit] = useState({
+  //   name: form.nameInProfile,
+  //   email: form.emailInProfile,
+  // });
+
+  useEffect(() => {
+    setUserName(currentUser.name);
+  }, [currentUser.name]);
+
+  useEffect(() => {
+    console.log((form.nameInProfile));
+    console.log((currentUser.name));
+    console.log((form.emailInProfile));
+    console.log((currentUser.email));
+
+    hardChangeIsFormValid(!(form.name
+      === currentUser.name) || !(form.email === currentUser.email));
+  }, [form.name, form.email]);
 
   const isEditHandler = () => {
     setIsEdit(!isEdit);
     refName.current.focus();
   };
 
+  const submitProfileHandler = (e) => {
+    e.preventDefault();
+    setIsEdit(!isEdit);
+    changeProfile(form);
+  };
+
+  const escapeKeyHandler = (e) => {
+    if (isEdit && e.key === 'Escape') {
+      updateFormInput({
+        nameInProfile: currentUser.name,
+        emailInProfile: currentUser.email,
+      });
+      setIsEdit(false);
+    }
+  };
+
   useEffect(() => {
     if (isEdit) {
       refName.current.focus();
     }
-  }, [isEdit]);
-
-  const submitProfileHandler = (e) => {
-    e.preventDefault();
-    console.log(form);
-    setIsEdit(!isEdit);
-    changeProfile(form);
-  };
+    document.addEventListener('keydown', escapeKeyHandler);
+    return () => {
+      document.removeEventListener('keydown', escapeKeyHandler);
+    };
+  }, [isEdit, currentUser]);
 
   return (
     <>
@@ -49,7 +82,7 @@ function Profile({
         <h2 className="profile__title">
           Привет,
           {' '}
-          {user.name}
+          {userName}
           !
         </h2>
         <form
@@ -113,7 +146,6 @@ function Profile({
               aria-label="Редактировать профайл"
               value="Редактировать"
               onClick={isEditHandler}
-            // disabled={() => { }}
             />
             <input
               type="button"
@@ -122,7 +154,6 @@ function Profile({
               aria-label="Выйти из аккаунта"
               value="Выйти из аккаунта"
               onClick={logOut}
-            // disabled={() => { }}
             />
           </div>
         ) : (
@@ -143,13 +174,13 @@ function Profile({
 }
 
 Profile.propTypes = {
-  logOut: PropTypes.func,
   changeProfile: PropTypes.func,
+  logOut: PropTypes.func,
 };
 
 Profile.defaultProps = {
-  logOut: () => { },
   changeProfile: () => { },
+  logOut: () => { },
 };
 
 export default Profile;

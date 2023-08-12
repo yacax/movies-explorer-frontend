@@ -12,12 +12,6 @@ function MoviesCard({
   const toDoDurationInHours = (min) => `${Math.floor(min / 60)}ч ${min % 60}м`;
   const durationInHours = toDoDurationInHours(movie.duration);
 
-  const onMovieButton = () => {
-    handleMovieButton(movie);
-  };
-
-  // console.log(movie);
-
   return (
     <div className="movies-card">
       <h1 className="movies-card__title">{movie.nameRU}</h1>
@@ -25,34 +19,37 @@ function MoviesCard({
       <input
         type="button"
         className={`movies-card__save-button
-        ${movie.save && !savedMoviesPage && 'movies-card__save-button_type_active'}
-        ${savedMoviesPage && 'movies-card__save-button_type_delete'}`}
+        ${(movie.save && !savedMoviesPage) ? 'movies-card__save-button_type_active' : ''}
+        ${savedMoviesPage ? 'movies-card__save-button_type_delete' : ''}`}
         name="movies-card__save-button"
         aria-label="Сохранить фильм"
         value=""
-        onClick={onMovieButton}
+        onClick={() => {
+          handleMovieButton(movie);
+        }}
+
       />
-      <img
-        src={movie.image}
-        alt={movie.nameRU}
-        className="movies-card__image"
-      />
+      <a href={movie.trailerLink} target="_blank" rel="noopener noreferrer">
+        <img
+          src={movie.image}
+          alt={movie.nameRU}
+          className="movies-card__image"
+        />
+      </a>
     </div>
   );
 }
 
 MoviesCard.propTypes = {
   movie: PropTypes.shape({
-    // id: PropTypes.number.isRequired,
     movieId: PropTypes.number.isRequired,
     nameRU: PropTypes.string.isRequired,
     duration: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
-    // searchRate: PropTypes.number.isRequired,
     save: PropTypes.bool,
+    trailerLink: PropTypes.string.isRequired,
   }),
   handleMovieButton: PropTypes.func.isRequired,
-  // isMovies: PropTypes.bool,
 };
 
 MoviesCard.defaultProps = {
@@ -62,10 +59,8 @@ MoviesCard.defaultProps = {
     duration: 'no name',
     link: 'no name',
     image: '',
-    // searchRate: 0,
     save: false,
   },
-  // isMovies: false,
 };
 
 export default MoviesCard;

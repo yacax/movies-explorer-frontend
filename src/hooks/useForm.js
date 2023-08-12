@@ -25,12 +25,10 @@ const useForm = (initialState) => {
   };
 
   const updateFormInput = (data) => {
-    if (data.name && data.value) {
-      setForm({
-        ...form,
-        [data.name]: data.value,
-      });
-    }
+    setForm((prevForm) => ({
+      ...prevForm,
+      ...data,
+    }));
   };
 
   useEffect(() => {

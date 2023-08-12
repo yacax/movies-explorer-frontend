@@ -2,37 +2,40 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  z-index: 1;
+  z-index: 2;
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 10vh;
-  min-height: 20px;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
   transform: translate(-50%, -50%);
-  padding: 10px;
+  padding: 20px;
   background-color: rgb(255 104 56 / 90%);
   border-radius: 5px;
+  box-shadow: 0 8px 15px rgb(0 0 0 / 10%);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+  max-width: 80%;
+
 }
 
-.info__title {
-  margin: auto;
-  font-family: Inter, Arial, sans-serif;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  color: #fff;
-  margin-right: 0;
+.info_type_positive {
+  background-color: rgb(43 224 128 / 90%);
+}
+
+.info_is-open {
+  visibility: visible;
+  opacity: 1;
+
 }
 
 .info__text {
-  margin: auto;
   font-family: Inter, Arial, sans-serif;
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-align: center;
   color: #fff;
-  margin-left: 0;
+  transition: opacity .5s ease-in-out;
 }
+

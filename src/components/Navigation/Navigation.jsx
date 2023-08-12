@@ -2,15 +2,12 @@ import React from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import './Navigation.css';
 import PropTypes from 'prop-types';
-// import IsLoggedIn from '../../contexts/IsLoggedInContext';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function Navigation({
   isPopup,
   closePopup,
-  // isLoggedIn,
 }) {
-  // const { isLoggedIn } = React.useContext(IsLoggedIn);
   const user = React.useContext(CurrentUserContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -75,7 +72,6 @@ function Navigation({
 Navigation.propTypes = {
   isPopup: PropTypes.bool.isRequired,
   closePopup: PropTypes.func.isRequired,
-  // isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default Navigation;
