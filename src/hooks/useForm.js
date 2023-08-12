@@ -44,12 +44,6 @@ const useForm = (initialState) => {
     }
   }, [form]);
 
-  // useEffect(() => {
-  //   if (Object.values(form).every((x) => x !== '')) {
-  //     setIsFormValid(!hasErrors(errors));
-  //   }
-  // }, [form]);
-
   const resetForm = () => {
     setForm(initialState);
   };
@@ -85,13 +79,12 @@ const useForm = (initialState) => {
         ...prevErrors,
         [input.name]: input.validationMessage,
       };
-      const PASSWORD_REGEX = /^(?=.*[A-Z])(?=.*).{8,}$/;
 
       if (input.name === 'confirmPassword') {
         const currentPassword = input.name === 'password' ? input.value : form.password;
         const currentConfirmPassword = input.name === 'confirmPassword' ? input.value : form.confirmPassword;
 
-        if (currentPassword !== currentConfirmPassword || !PASSWORD_REGEX.test(currentPassword)) {
+        if (currentPassword !== currentConfirmPassword) {
           newErrors.password = input.validationMessage;
           newErrors.confirmPassword = 'Пароли не совпадают или слишком простые. Пожалуйста используйте заглавные и строчные буквы при создании пароля.';
         } else {

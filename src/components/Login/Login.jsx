@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useForm from '../../hooks/useForm';
 import PageWithForm from '../PageWithForm/PageWithForm';
@@ -9,6 +9,7 @@ function SignIn({ loginUser }) {
     errors,
     isFormValid,
     handleChange,
+    hardChangeIsFormValid,
   } = useForm({
     email: '',
     password: '',
@@ -18,6 +19,10 @@ function SignIn({ loginUser }) {
     evt.preventDefault();
     loginUser(form);
   };
+
+  useEffect(() => {
+    hardChangeIsFormValid();
+  }, []);
 
   return (
     <PageWithForm

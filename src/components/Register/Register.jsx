@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useForm from '../../hooks/useForm';
 import PageWithForm from '../PageWithForm/PageWithForm';
@@ -9,6 +9,7 @@ function Register({ registerUser }) {
     errors,
     isFormValid,
     handleChange,
+    hardChangeIsFormValid,
   } = useForm({
     name: '',
     email: '',
@@ -20,6 +21,10 @@ function Register({ registerUser }) {
     evt.preventDefault();
     registerUser(form);
   };
+
+  useEffect(() => {
+    hardChangeIsFormValid();
+  }, []);
 
   return (
     <PageWithForm
