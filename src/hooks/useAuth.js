@@ -151,7 +151,7 @@ const useAuth = (setCurrentUser) => {
   };
 
   const changeProfile = (user) => {
-    mainApi.patchUserData(user.name, user.email)
+    mainApi.patchUserData(user.nameInProfile, user.emailInProfile)
       .then((res) => {
         if (userTest(res.data._id, res.data.name, res.data.email)) {
           setCurrentUser((prevState) => ({

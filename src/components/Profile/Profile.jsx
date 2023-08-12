@@ -19,30 +19,23 @@ function Profile({
     isFormValid,
     updateFormInput,
     hardChangeIsFormValid,
+    resetForm,
   } = useForm({
-    name: currentUser.name,
-    email: currentUser.email,
+    nameInProfile: currentUser.name,
+    emailInProfile: currentUser.email,
   });
 
   const [userName, setUserName] = useState(currentUser.name);
-  // const [userEdit, setUserEdit] = useState({
-  //   name: form.nameInProfile,
-  //   email: form.emailInProfile,
-  // });
 
   useEffect(() => {
     setUserName(currentUser.name);
   }, [currentUser.name]);
 
   useEffect(() => {
-    console.log((form.nameInProfile));
-    console.log((currentUser.name));
-    console.log((form.emailInProfile));
-    console.log((currentUser.email));
-
-    hardChangeIsFormValid(!(form.name
-      === currentUser.name) || !(form.email === currentUser.email));
-  }, [form.name, form.email]);
+    const areInitialValuesSame = form.nameInProfile
+      === currentUser.name && form.emailInProfile === currentUser.email;
+    hardChangeIsFormValid(!areInitialValuesSame && isFormValid);
+  }, [form.nameInProfile, form.emailInProfile, isFormValid]);
 
   const isEditHandler = () => {
     setIsEdit(!isEdit);
@@ -53,6 +46,7 @@ function Profile({
     e.preventDefault();
     setIsEdit(!isEdit);
     changeProfile(form);
+    resetForm();
   };
 
   const escapeKeyHandler = (e) => {
@@ -99,41 +93,41 @@ function Profile({
               ref={refName}
               type="text"
               className={`profile__input ${isEdit ? 'profile__input_type_edit' : ''}`}
-              name="name"
+              name="nameInProfile"
               placeholder="Имя"
               required
               minLength="2"
               maxLength="30"
               id="profile-name-input"
               disabled={!isEdit}
-              value={form.name}
+              value={form.nameInProfile}
               onChange={handleChange}
             />
             <span className="profile__input-error profile__input-error_type_name">
-              {errors.name}
+              {errors.nameInProfile}
             </span>
           </label>
 
           <label
             className={`profile__input-label ${isEdit ? 'profile__input-label_type_edit' : ''}`}
-            htmlFor="email"
+            htmlFor="emailInProfile"
           >
             E-mail
             <input
               type="email"
               className={`profile__input ${isEdit ? 'profile__input_type_edit' : ''}`}
-              name="email"
+              name="emailInProfile"
               placeholder="E-mail"
               required
               minLength="2"
               maxLength="30"
               id="profile-email-input"
               disabled={!isEdit}
-              value={form.email}
+              value={form.emailInProfile}
               onChange={handleChange}
             />
             <span className="profile__input-error profile__input-error_type_email">
-              {errors.email}
+              {errors.emailInProfile}
             </span>
           </label>
         </form>

@@ -32,10 +32,23 @@ const useForm = (initialState) => {
   };
 
   useEffect(() => {
+    const isInitialName = form.profileName === initialState.profileName;
+    const isInitialEmail = form.profileEmail === initialState.profileEmail;
+
+    if (Object.values(form).every((x) => x !== '')) {
+      setIsFormValid(!hasErrors(errors) && !isInitialName && !isInitialEmail);
+    }
+
     if (Object.values(form).every((x) => x !== '')) {
       setIsFormValid(!hasErrors(errors));
     }
   }, [form]);
+
+  // useEffect(() => {
+  //   if (Object.values(form).every((x) => x !== '')) {
+  //     setIsFormValid(!hasErrors(errors));
+  //   }
+  // }, [form]);
 
   const resetForm = () => {
     setForm(initialState);
