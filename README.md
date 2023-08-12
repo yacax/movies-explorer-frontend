@@ -37,4 +37,6 @@ This project has been built with a stack of modern technologies that provides hi
 - **Debugging:** The application will be thoroughly debugged to ensure smooth and error-free operation.
 - **UX optimization:** The user experience (UX) will be optimized to make the application intuitive and user-friendly.
 
+- Backend (API): [api.tarantino.nomoredomains.work](http://api.tarantino.nomoredomains.work)
+- Frontend: [tarantino.nomoredomains.work](http://tarantino.nomoredomains.work) (Under development)
 ## [Link to template](https://disk.yandex.ru/d/Q4f6GTeyhs27HA)

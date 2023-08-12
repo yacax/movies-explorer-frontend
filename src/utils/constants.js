@@ -1,5 +1,5 @@
-// const baseBackendUrl = 'api.tarantino.nomoredomains.work';
-const baseBackendUrl = 'http://localhost:3000';
+const baseBackendUrl = 'https://api.tarantino.nomoredomains.work';
+// const baseBackendUrl = 'http://localhost:3000';
 const baseMoviesUrl = 'https://api.nomoreparties.co/beatfilm-movies';
 const baseImageUrl = 'https://api.nomoreparties.co/';
 
