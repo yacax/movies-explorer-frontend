@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { baseImageUrl, textsErrorMessages } from '../utils/constants';
+import { BASE_IMAGE_URL, TEXTS_ERROR_MESSAGES } from '../utils/constants';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 
 const useSearch = () => {
@@ -28,8 +28,8 @@ const useSearch = () => {
       nameEN = '',
       created_at: createdAt = '',
     } = movie;
-    const fullImagelUrl = baseImageUrl + imageUrl;
-    const fullThumbnailUrl = baseImageUrl + thumbnail;
+    const fullImagelUrl = BASE_IMAGE_URL + imageUrl;
+    const fullThumbnailUrl = BASE_IMAGE_URL + thumbnail;
 
     return {
       movieId,
@@ -100,7 +100,7 @@ const useSearch = () => {
 
     if (searchResult.length === 0) {
       setFindedMovies([]);
-      setIsNotFoundMessage(textsErrorMessages.movieNotFoundError);
+      setIsNotFoundMessage(TEXTS_ERROR_MESSAGES.MOVIE_NOT_FOUND_ERROR);
     } else {
       setIsNotFoundMessage('');
       setFindedMovies(searchResult);
@@ -114,7 +114,7 @@ const useSearch = () => {
     }
 
     if (updatedResults.length === 0) {
-      setIsNotFoundMessage(textsErrorMessages.movieNotFoundError);
+      setIsNotFoundMessage(TEXTS_ERROR_MESSAGES.MOVIE_NOT_FOUND_ERROR);
     } else {
       setIsNotFoundMessage('');
     }

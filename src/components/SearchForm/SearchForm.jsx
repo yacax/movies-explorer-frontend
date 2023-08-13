@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './SearchForm.css';
 import PropTypes from 'prop-types';
 import useForm from '../../hooks/useForm';
+import { TEXTS_ERROR_MESSAGES } from '../../utils/constants';
 
 function SearchForm({
   searchHandle,
@@ -36,7 +37,7 @@ function SearchForm({
   const searchSubmitHandle = (e) => {
     e.preventDefault();
     if (form.search === '') {
-      setCustomError('search', 'Нужно ввести ключевое слово');
+      setCustomError('search', TEXTS_ERROR_MESSAGES.SEARCH_EMPTY_ERROR);
     } else {
       searchHandle(form.search);
     }

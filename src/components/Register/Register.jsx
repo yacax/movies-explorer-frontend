@@ -115,7 +115,6 @@ function Register({ registerUser }) {
           name="confirmPassword"
           placeholder="Подтвердите пароль"
           required
-          minLength="8"
           maxLength="40"
           id="confirmPassword"
           value={form.confirmPassword}

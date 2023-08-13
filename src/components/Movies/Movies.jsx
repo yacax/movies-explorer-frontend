@@ -10,7 +10,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Main from '../Main/Main';
 import Preloader from '../Preloader/Preloader';
-import { textsErrorMessages } from '../../utils/constants';
+import { TEXTS_ERROR_MESSAGES } from '../../utils/constants';
 
 import useSearch from '../../hooks/useSearch';
 import getMoviesRequest from '../../utils/MoviesApi';
@@ -19,6 +19,8 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 function Movies({
   savedMovies,
   handleMovieButton,
+  allMoviesFromMoviesServer,
+  setAllMoviesFromMoviesServer,
 }) {
   const location = useLocation();
   const { currentUser } = React.useContext(CurrentUserContext);
@@ -74,20 +76,29 @@ function Movies({
   }, [location]);
 
   const searchInAllMovies = (searchRequest) => {
-    setIsLoading(true);
-    getMoviesRequest()
-      .then((res) => {
-        performSearch(searchRequest, res);
-        setLocalStorageData('lastSearchDataLocalStorage', {
-          lastSearchRequest: searchRequest,
-          lastFindedMovies: res,
-        });
-      })
-      .catch((err) => {
-        setIsNotFoundMessage(textsErrorMessages.requestError);
-        console.log(err);
-      })
-      .finally(() => setIsLoading(false));
+    if (allMoviesFromMoviesServer.length === 0) {
+      setIsLoading(true);
+      getMoviesRequest()
+        .then((res) => {
+          setAllMoviesFromMoviesServer(res);
+          performSearch(searchRequest, res);
+          setLocalStorageData('lastSearchDataLocalStorage', {
+            lastSearchRequest: searchRequest,
+            lastFindedMovies: res,
+          });
+        })
+        .catch((err) => {
+          setIsNotFoundMessage(TEXTS_ERROR_MESSAGES.REQUEST_ERROR);
+          console.log(err);
+        })
+        .finally(() => setIsLoading(false));
+    } else {
+      performSearch(searchRequest, allMoviesFromMoviesServer);
+      setLocalStorageData('lastSearchDataLocalStorage', {
+        lastSearchRequest: searchRequest,
+        lastFindedMovies: allMoviesFromMoviesServer,
+      });
+    }
   };
   useEffect(() => {
     if (findedMovies.length) {
@@ -147,6 +158,12 @@ Movies.propTypes = {
     }),
   ),
   handleMovieButton: PropTypes.func,
+  allMoviesFromMoviesServer: PropTypes.arrayOf(
+    PropTypes.shape({
+      movieId: PropTypes.number,
+    }),
+  ).isRequired,
+  setAllMoviesFromMoviesServer: PropTypes.func.isRequired,
 };
 
 Movies.defaultProps = {

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import MainPage from '../MainPage/MainPage';
 import Movies from '../Movies/Movies';
@@ -10,21 +10,30 @@ import Register from '../Register/Register';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtetedRoute';
+import IsLogginedProtectedRoute from '../IsLogginedProtectedRoute';
 import Info from '../Info/Info';
 import useAuth from '../../hooks/useAuth';
 import useMovie from '../../hooks/useMovie';
+import { VALID_PATHS } from '../../utils/constants';
 
 function App() {
+  const location = useLocation();
   const [currentUser, setCurrentUser] = useState({
     _id: '',
     name: '',
     email: '',
     isLoggedIn: false,
   });
+  const [allMoviesFromMoviesServer, setAllMoviesFromMoviesServer] = useState([]);
 
   const auth = useAuth(setCurrentUser);
-
   const { savedMovies, saveMovieButtonHandle } = useMovie(currentUser);
+
+  useEffect(() => {
+    if (VALID_PATHS.includes(location.pathname)) {
+      localStorage.setItem('lastValidPath', location.pathname);
+    }
+  }, [location]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -39,6 +48,8 @@ function App() {
                   component={Movies}
                   savedMovies={savedMovies}
                   handleMovieButton={saveMovieButtonHandle}
+                  allMoviesFromMoviesServer={allMoviesFromMoviesServer}
+                  setAllMoviesFromMoviesServer={setAllMoviesFromMoviesServer}
                 />
               )}
             />
@@ -73,7 +84,8 @@ function App() {
             <Route
               path="/signin"
               element={(
-                <Login
+                <IsLogginedProtectedRoute
+                  component={Login}
                   loginUser={auth.loginUser}
                 />
               )}
@@ -81,16 +93,15 @@ function App() {
             <Route
               path="/signup"
               element={(
-                <Register
+                <IsLogginedProtectedRoute
+                  component={Register}
                   registerUser={auth.registerUser}
                 />
               )}
             />
             <Route
               path="*"
-              element={(
-                <NotFoundPage />
-              )}
+              element={<NotFoundPage lastPath={localStorage.getItem('lastValidPath')} />}
             />
           </Routes>
         </div>

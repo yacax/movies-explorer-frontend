@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Info.css';
+import { AUTH_ERROR_MESSAGES } from '../../utils/constants';
 
 function Info({
   isOpen,
@@ -22,7 +23,7 @@ Info.propTypes = {
 
 Info.defaultProps = {
   isOpen: false,
-  infoMessage: 'Что-то пошло не так...',
+  infoMessage: AUTH_ERROR_MESSAGES.SMTH_WENT_WRONG,
   infoType: true,
 };
 

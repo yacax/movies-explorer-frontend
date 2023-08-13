@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import mainApi from '../utils/MainApi';
-import { authErrorMessages } from '../utils/constants';
+import { AUTH_ERROR_MESSAGES, REGEXP } from '../utils/constants';
 
 const jwtTest = (jwt) => {
-  const jwtPattern = /^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/;
+  const jwtPattern = REGEXP.JWT_PATTERN;
   return jwtPattern.test(jwt.token);
 };
 
@@ -68,11 +68,12 @@ const useAuth = (setCurrentUser) => {
             isLoggedIn: true,
           }));
         } else {
-          showInfoMessage(authErrorMessages.serverRespError);
+          showInfoMessage(AUTH_ERROR_MESSAGES.SERVER_RESP_ERROR);
         }
       })
       .catch((err) => {
         console.log(err);
+        showInfoMessage(AUTH_ERROR_MESSAGES.SMTH_WENT_WRONG);
       });
   }, [token]);
 
@@ -84,10 +85,10 @@ const useAuth = (setCurrentUser) => {
     mainApi.register(name, email, password)
       .then((res) => {
         if (userTest(res._id, res.name, res.email)) {
-          showInfoMessage(authErrorMessages.successRegistration, true);
+          showInfoMessage(AUTH_ERROR_MESSAGES.SUCCESS_REGISTRATION, true);
         } else {
-          showInfoMessage(authErrorMessages.serverRespError);
-          throw new Error(authErrorMessages.serverRespError);
+          showInfoMessage(AUTH_ERROR_MESSAGES.SERVER_RESP_ERROR);
+          throw new Error(AUTH_ERROR_MESSAGES.SERVER_RESP_ERROR);
         }
         return {
           _id: res._id,
@@ -110,13 +111,16 @@ const useAuth = (setCurrentUser) => {
               }));
               navigate('/movies');
             } else {
-              showInfoMessage(authErrorMessages.serverRespError);
+              showInfoMessage(AUTH_ERROR_MESSAGES.SERVER_RESP_ERROR);
             }
+          }).catch((err) => {
+            console.log(err);
+            showInfoMessage(AUTH_ERROR_MESSAGES.SMTH_WENT_WRONG);
           });
       })
       .catch((err) => {
         console.log(err);
-        showInfoMessage(authErrorMessages.smthWentWrong);
+        showInfoMessage(AUTH_ERROR_MESSAGES.SMTH_WENT_WRONG);
       });
   };
 
@@ -128,8 +132,8 @@ const useAuth = (setCurrentUser) => {
           localStorage.setItem('jwt', res.token);
           mainApi.setToken(res.token);
         } else {
-          showInfoMessage(authErrorMessages.serverRespError);
-          throw new Error(authErrorMessages.serverRespError);
+          showInfoMessage(AUTH_ERROR_MESSAGES.SERVER_RESP_ERROR);
+          throw new Error(AUTH_ERROR_MESSAGES.SERVER_RESP_ERROR);
         }
         return mainApi.getUserData(res.token);
       })
@@ -146,12 +150,12 @@ const useAuth = (setCurrentUser) => {
       })
       .catch((err) => {
         console.log(err);
-        showInfoMessage(authErrorMessages.smthWentWrong);
+        showInfoMessage(AUTH_ERROR_MESSAGES.SMTH_WENT_WRONG);
       });
   };
 
   const changeProfile = (user) => {
-    mainApi.patchUserData(user.nameInProfile, user.emailInProfile)
+    mainApi.patchUserData(user.name, user.email)
       .then((res) => {
         if (userTest(res.data._id, res.data.name, res.data.email)) {
           setCurrentUser((prevState) => ({
@@ -159,12 +163,12 @@ const useAuth = (setCurrentUser) => {
             name: res.data.name,
             email: res.data.email,
           }));
-          showInfoMessage('Успех! Новые данные сохранены!', true);
+          showInfoMessage(AUTH_ERROR_MESSAGES.SUCCESS, true);
         }
       })
       .catch((err) => {
         console.log(err);
-        showInfoMessage(authErrorMessages.smthWentWrong);
+        showInfoMessage(AUTH_ERROR_MESSAGES.SMTH_WENT_WRONG);
       });
   };
 

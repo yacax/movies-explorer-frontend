@@ -45,7 +45,7 @@ function useMovie(currentUser) {
           console.log(err);
         });
     }
-  }, [currentUser]);
+  }, []);
   return {
     savedMovies,
     setSavedMovies,

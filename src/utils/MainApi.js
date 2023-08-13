@@ -1,10 +1,10 @@
 import {
-  baseBackendUrl,
+  BASE_BACKEND_URL,
 } from './constants';
 
 class MainApi {
   constructor(options) {
-    this.baseUrl = options.baseBackendUrl;
+    this.baseUrl = options.BASE_BACKEND_URL;
     this.headers = options.headers;
     this.token = '';
   }
@@ -114,7 +114,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseBackendUrl,
+  BASE_BACKEND_URL,
   headers: {
     'Content-Type': 'application/json',
   },

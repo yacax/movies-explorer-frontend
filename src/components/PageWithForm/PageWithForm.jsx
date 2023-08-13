@@ -65,10 +65,14 @@ PageWithForm.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  isFormValid: PropTypes.bool.isRequired,
+  isFormValid: PropTypes.bool,
   pageNavigationLink: PropTypes.string.isRequired,
   pageNavigationLinkText: PropTypes.string.isRequired,
   pageNavigationLinkComment: PropTypes.string.isRequired,
+};
+
+PageWithForm.defaultProps = {
+  isFormValid: false,
 };
 
 export default PageWithForm;
