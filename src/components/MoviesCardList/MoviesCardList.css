@@ -44,6 +44,14 @@
   outline: 2px solid #000;
 }
 
+.movies-card-list__text-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .movies-card-list__text {
   margin: auto;
   font-family: Inter, Arial, sans-serif;

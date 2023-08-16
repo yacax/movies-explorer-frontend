@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import useForm from '../../hooks/useForm';
 import PageWithForm from '../PageWithForm/PageWithForm';
 
-function SignIn() {
+function SignIn({ loginUser }) {
   const {
     form,
     errors,
@@ -13,6 +14,11 @@ function SignIn() {
     password: '',
   });
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    loginUser(form);
+  };
+
   return (
     <PageWithForm
       pageTitle="Рады видеть!"
@@ -22,7 +28,7 @@ function SignIn() {
       pageNavigationLinkText="Регистрация"
       pageNavigationLinkComment="Ещё не зарегистрированы?"
       isFormValid={isFormValid}
-      onSubmit={() => { }}
+      onSubmit={handleSubmit}
     >
 
       <label
@@ -71,5 +77,9 @@ function SignIn() {
     </PageWithForm>
   );
 }
+
+SignIn.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+};
 
 export default SignIn;

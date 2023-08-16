@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
 import CurrentUserContext from '../contexts/CurrentUserContext';
 
-function ProtectedRoute({ component: Component, ...props }) {
+function IsLogginedProtectedRoute({ component: Component, ...props }) {
   const currentUser = React.useContext(CurrentUserContext);
-  if (!currentUser.isLoggedIn) {
+  if (currentUser.isLoggedIn) {
     return <Navigate to="/" />;
   }
   return <Component {...props} />;
 }
 
-ProtectedRoute.propTypes = {
+IsLogginedProtectedRoute.propTypes = {
   component: PropTypes.elementType.isRequired,
 };
 
-export default ProtectedRoute;
+export default IsLogginedProtectedRoute;

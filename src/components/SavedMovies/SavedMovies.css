@@ -3,16 +3,17 @@
   flex-direction: column;
   margin: 0;
   padding: 0;
-  margin-bottom: 175px;}
+  margin-bottom: 86px;
+}
 
 @media screen and (max-width: 1279px) {
   .saved-movies {
-    margin-bottom: 90px;
+    margin-bottom: 0;
   }
 }
 
 @media screen and (max-width: 767px) {
   .saved-movies {
-    margin-bottom: 165px;
+    margin-bottom: 76px;
   }
 }

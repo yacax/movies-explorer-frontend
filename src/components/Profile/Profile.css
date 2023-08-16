@@ -147,12 +147,17 @@
   text-align: center;
   text-decoration: none;
   color: #FFF;
-  background: #3456F3;
+  background: #FF6838;
   flex-shrink: 0;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   transition: opacity .3s ease-in-out;
+}
+
+.profile__button_disabled {
+  color: #C2C2C2;
+  background: #F8F8F8;
 }
 
 @media screen and (max-width: 1279px) {
@@ -187,5 +192,9 @@
 
   .profile__link {
     font-size: 12px;
+  }
+
+  .profile__button {
+    width: 100%;;
   }
 }

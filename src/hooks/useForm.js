@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
+import { FORM_ERRORS_MESSAGES, REGEXP } from '../utils/constants';
 
-const useForm = (initialState) => {
+const useForm = (
+  initialState,
+) => {
   const [form, setForm] = useState(initialState);
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
   const [isActiveInput, setIsActiveInput] = useState({});
 
   const hasErrors = (err) => Object.values(err).some((value) => value !== '');
+  const hasValues = (val) => !Object.values(val).some((value) => value === '');
 
   const handleFocus = (evt) => {
     setIsActiveInput(evt.target);
@@ -25,19 +29,11 @@ const useForm = (initialState) => {
   };
 
   const updateFormInput = (data) => {
-    if (data.name && data.value) {
-      setForm({
-        ...form,
-        [data.name]: data.value,
-      });
-    }
+    setForm((prevForm) => ({
+      ...prevForm,
+      ...data,
+    }));
   };
-
-  useEffect(() => {
-    if (Object.values(form).every((x) => x !== '')) {
-      setIsFormValid(!hasErrors(errors));
-    }
-  }, [form]);
 
   const resetForm = () => {
     setForm(initialState);
@@ -47,53 +43,60 @@ const useForm = (initialState) => {
     setIsFormValid(boolean);
   };
 
-  useEffect(() => {
-    setIsFormValid(!hasErrors(errors));
-  }, [errors]);
-
-  const setCustomError = (inputName, customErrorText) => {
-    setErrors((prevErrors) => {
-      const newErrors = {
-        ...prevErrors,
-        [inputName]: customErrorText,
-      };
-      return newErrors;
-    });
+  const addInputCustomError = (input, errorText) => {
+    setErrors((prevState) => ({
+      ...prevState,
+      [input.name]: errorText,
+    }));
   };
+
+  const addExtraEmailErrors = (input) => {
+    if (input.name === 'email') {
+      if (input.name === 'email' && !(REGEXP.EMAIL).test(input.value)) {
+        addInputCustomError(input, FORM_ERRORS_MESSAGES.EMAIL);
+      } else {
+        addInputCustomError(input, '');
+      }
+    }
+  };
+
+  const addExtraPasswordsErrors = (input) => {
+    if ((input.name === 'confirmPassword' && input.value !== form.password)
+      || (input.name === 'password' && form.confirmPassword.length > 0 && input.value !== form.confirmPassword)) {
+      addInputCustomError(input, FORM_ERRORS_MESSAGES.CONFIRM_PASSWORD);
+    }
+  };
+  const checkInitial = () => !Object.keys(form).every((key) => form[key] === initialState[key]);
 
   const handleChange = (evt) => {
     const input = evt.target;
 
-    setForm({
-      ...form,
+    setForm((prevState) => ({
+      ...prevState,
       [input.name]: input.value,
-    });
+    }));
 
-    setErrors((prevErrors) => {
-      const newErrors = {
-        ...prevErrors,
-        [input.name]: input.validationMessage,
-      };
-      const PASSWORD_REGEX = /^(?=.*[A-Z])(?=.*).{8,}$/;
+    setErrors((prevState) => ({
+      ...prevState,
+      [input.name]: input.validationMessage,
+    }));
 
-      if (input.name === 'confirmPassword') {
-        const currentPassword = input.name === 'password' ? input.value : form.password;
-        const currentConfirmPassword = input.name === 'confirmPassword' ? input.value : form.confirmPassword;
+    if (form.email || form.email === '') {
+      addExtraEmailErrors(input);
+    }
 
-        if (currentPassword !== currentConfirmPassword || !PASSWORD_REGEX.test(currentPassword)) {
-          newErrors.password = input.validationMessage;
-          newErrors.confirmPassword = 'Пароли не совпадают или слишком простые. Пожалуйста используйте заглавные и строчные буквы при создании пароля.';
-        } else {
-          newErrors.password = '';
-          newErrors.confirmPassword = '';
-        }
-      }
-
-      setIsFormValid(!hasErrors(newErrors));
-
-      return newErrors;
-    });
+    if (form.confirmPassword || form.confirmPassword === '') {
+      addExtraPasswordsErrors(input);
+    }
   };
+
+  useEffect(() => {
+    setIsFormValid(
+      !hasErrors(errors)
+      && hasValues(form)
+      && checkInitial(),
+    );
+  }, [form, errors]);
 
   return {
     form,
@@ -101,7 +104,6 @@ const useForm = (initialState) => {
     errors,
     isFormValid,
     handleChange,
-    setCustomError,
     resetForm,
     hardChangeIsFormValid,
     handleFocus,

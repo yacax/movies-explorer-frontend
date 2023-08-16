@@ -1,0 +1,41 @@
+.info {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: rgb(255 104 56 / 90%);
+  border-radius: 5px;
+  box-shadow: 0 8px 15px rgb(0 0 0 / 10%);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+  max-width: 80%;
+
+}
+
+.info_type_positive {
+  background-color: rgb(43 224 128 / 90%);
+}
+
+.info_is-open {
+  visibility: visible;
+  opacity: 1;
+
+}
+
+.info__text {
+  font-family: Inter, Arial, sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  color: #fff;
+  transition: opacity .5s ease-in-out;
+}
+

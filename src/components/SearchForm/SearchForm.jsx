@@ -1,28 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './SearchForm.css';
+import PropTypes from 'prop-types';
 import useForm from '../../hooks/useForm';
+import { TEXTS_ERROR_MESSAGES } from '../../utils/constants';
 
-function SearchForm() {
+function SearchForm({
+  searchHandle,
+  isShorts,
+  isShortsHandler,
+  setResetSavedMoviesSearch,
+  lastSearchRequest,
+}) {
   const {
     form,
     errors,
     handleChange,
     setCustomError,
+    handleFocus,
     isActiveInput,
+    setForm,
+
   } = useForm({
-    search: '',
+    search: lastSearchRequest,
     searchError: '',
   });
 
-  const [checked, setChecked] = useState(false);
-  // const [searchInput, setSearchInput] = useState('');
-  // const [searchError, setSearchError] = useState('');
+  useEffect(() => {
+    setForm({ search: lastSearchRequest });
+  }, [lastSearchRequest]);
 
-  const searchSubmit = (e) => {
+  useEffect(() => {
+    if (isActiveInput.name && form.search === '') setResetSavedMoviesSearch(true);
+    else setResetSavedMoviesSearch(false);
+  }, [form.search]);
+
+  const searchSubmitHandle = (e) => {
     e.preventDefault();
     if (form.search === '') {
-      console.log(isActiveInput);
-      setCustomError('search', 'Нужно ввести ключевое слово');
+      setCustomError('search', TEXTS_ERROR_MESSAGES.SEARCH_EMPTY_ERROR);
+    } else {
+      searchHandle(form.search);
     }
   };
 
@@ -30,7 +47,7 @@ function SearchForm() {
     <section className="search-form">
       <form
         className="search-form__form"
-        onSubmit={searchSubmit}
+        onSubmit={searchSubmitHandle}
       >
         <label
           className="search-form__label"
@@ -42,11 +59,10 @@ function SearchForm() {
             name="search"
             placeholder="Фильм"
             id="search"
-            // required
-            // minLength="1"
             maxLength="50"
             value={form.search}
             onChange={handleChange}
+            onFocus={handleFocus}
           />
           <span className="search-form__error-text">
             {errors.search}
@@ -59,25 +75,6 @@ function SearchForm() {
           aria-label="Найти фильм"
           value=""
         />
-
-        {/* <div
-          className="search-form__box"
-        >
-          <input
-            type="text"
-            className="search-form__input"
-            name="input"
-            placeholder="Фильм"
-            id="input"
-          />
-          <input
-            type="submit"
-            className="search-form__submit"
-            name="movie-search-submit"
-            aria-label="Найти фильм"
-            value=""
-          />
-        </div> */}
       </form>
 
       <label
@@ -89,8 +86,8 @@ function SearchForm() {
           type="checkbox"
           className="search-form__checkbox"
           name="checkbox"
-          checked={checked}
-          onChange={() => setChecked(!checked)}
+          checked={isShorts}
+          onChange={isShortsHandler}
         />
         <span className="search-form__checkbox-indicator" />
         Короткометражки
@@ -98,4 +95,18 @@ function SearchForm() {
     </section>
   );
 }
+
+SearchForm.propTypes = {
+  searchHandle: PropTypes.func.isRequired,
+  isShorts: PropTypes.bool.isRequired,
+  isShortsHandler: PropTypes.func.isRequired,
+  setResetSavedMoviesSearch: PropTypes.func,
+  lastSearchRequest: PropTypes.string,
+};
+
+SearchForm.defaultProps = {
+  setResetSavedMoviesSearch: () => { },
+  lastSearchRequest: '',
+};
+
 export default SearchForm;

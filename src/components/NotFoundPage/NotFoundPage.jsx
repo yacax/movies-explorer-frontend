@@ -1,10 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './NotFoundPage.css';
 
-function NotFoundPage() {
+function NotFoundPage({ lastPath }) {
+  const navigate = useNavigate();
+
   const goBack = () => {
-    window.history.back();
+    if (lastPath) {
+      navigate(lastPath);
+    } else {
+      navigate('/');
+    }
   };
+
   return (
     <div
       className="not-found-page"
@@ -29,4 +38,13 @@ function NotFoundPage() {
     </div>
   );
 }
+
+NotFoundPage.propTypes = {
+  lastPath: PropTypes.string,
+};
+
+NotFoundPage.defaultProps = {
+  lastPath: '/',
+};
+
 export default NotFoundPage;

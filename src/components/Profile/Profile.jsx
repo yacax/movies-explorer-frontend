@@ -1,39 +1,67 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Profile.css';
+import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import useForm from '../../hooks/useForm';
-import IsLoggedIn from '../../contexts/IsLoggedInContext';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-function Profile() {
-  const navigate = useNavigate();
+function Profile({
+  changeProfile,
+  logOut,
+}) {
+  const currentUser = React.useContext(CurrentUserContext);
   const [isEdit, setIsEdit] = useState(false);
-  const { setIsLoggedIn } = React.useContext(IsLoggedIn);
   const refName = useRef();
   const {
     form,
+    setForm,
     errors,
     handleChange,
+    isFormValid,
+    updateFormInput,
   } = useForm({
-    username: 'Александр',
-    email: 'mail@mail.com',
+    name: currentUser.name,
+    email: currentUser.email,
   });
+
+  useEffect(() => {
+    setForm((prevState) => ({
+      ...prevState,
+      name: currentUser.name,
+      email: currentUser.email,
+    }));
+    setIsEdit(false);
+  }, [currentUser]);
 
   const isEditHandler = () => {
     setIsEdit(!isEdit);
     refName.current.focus();
   };
 
+  const submitProfileHandler = (e) => {
+    e.preventDefault();
+    changeProfile(form);
+  };
+
+  const escapeKeyHandler = (e) => {
+    if (isEdit && e.key === 'Escape') {
+      updateFormInput({
+        name: currentUser.name,
+        email: currentUser.email,
+      });
+      setIsEdit(false);
+    }
+  };
+
   useEffect(() => {
     if (isEdit) {
       refName.current.focus();
     }
-  }, [isEdit]);
-
-  const goExit = () => {
-    setIsLoggedIn(false);
-    navigate('/');
-  };
+    document.addEventListener('keydown', escapeKeyHandler);
+    return () => {
+      document.removeEventListener('keydown', escapeKeyHandler);
+    };
+  }, [isEdit, currentUser]);
 
   return (
     <>
@@ -42,33 +70,35 @@ function Profile() {
         <h2 className="profile__title">
           Привет,
           {' '}
-          {form.username}
+          {currentUser.name}
           !
         </h2>
         <form
           className="profile__form"
+          onSubmit={submitProfileHandler}
+          id="profileForm"
         >
           <label
             className={`profile__input-label ${isEdit ? 'profile__input-label_type_edit' : ''}`}
-            htmlFor="username"
+            htmlFor="name"
           >
             Имя
             <input
               ref={refName}
               type="text"
               className={`profile__input ${isEdit ? 'profile__input_type_edit' : ''}`}
-              name="username"
+              name="name"
               placeholder="Имя"
               required
-              minLength="1"
+              minLength="2"
               maxLength="30"
-              id="profile-username-input"
+              id="profile-name-input"
               disabled={!isEdit}
-              value={form.username}
+              value={form.name}
               onChange={handleChange}
             />
             <span className="profile__input-error profile__input-error_type_name">
-              {errors.username}
+              {errors.name}
             </span>
           </label>
 
@@ -94,7 +124,6 @@ function Profile() {
               {errors.email}
             </span>
           </label>
-
         </form>
         {!isEdit ? (
           <div className="profile__buttons-container">
@@ -105,7 +134,6 @@ function Profile() {
               aria-label="Редактировать профайл"
               value="Редактировать"
               onClick={isEditHandler}
-            // disabled={() => { }}
             />
             <input
               type="button"
@@ -113,23 +141,34 @@ function Profile() {
               name="profile-logout"
               aria-label="Выйти из аккаунта"
               value="Выйти из аккаунта"
-              onClick={goExit}
-            // disabled={() => { }}
+              onClick={logOut}
             />
           </div>
         ) : (
           <input
             type="submit"
-            className="profile__button"
+            form="profileForm"
+            className={`profile__button ${!isFormValid ? 'profile__button_disabled' : ''}`}
             name="profile-submit"
             aria-label="Сохранить изменения"
             value="Сохранить"
-            onClick={isEditHandler}
-          // disabled={() => { }}
+            disabled={!isFormValid}
           />
         )}
+
       </main>
     </>
   );
 }
+
+Profile.propTypes = {
+  changeProfile: PropTypes.func,
+  logOut: PropTypes.func,
+};
+
+Profile.defaultProps = {
+  changeProfile: () => { },
+  logOut: () => { },
+};
+
 export default Profile;
